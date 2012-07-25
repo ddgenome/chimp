@@ -1,0 +1,3 @@
+# mechanism to test event based rate constant conversion
+A + @ -> k_constant(k_Aads) <- k_arrhenius(A_Ades, E_Ades) @A;
+@A -> k_arrhenius(A_sr, E_sr) <- k_arrhenius(A_Bads, E_Bads) B + @;

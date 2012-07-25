@@ -1,0 +1,11 @@
+## gas-phase only mechanism
+mechanism "set.mech"
+## parameter input
+parameter "set.par"
+## gas-phase task
+task "set.task"
+mechanism "set.comp.mech"
+## parameter input
+parameter "set.par"
+## gas-phase task
+task "set.task"

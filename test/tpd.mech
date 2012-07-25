@@ -1,0 +1,9 @@
+# TPD mechanism with nearest-neighbor interactions
+@A + 4 [@A, @B]       -> k_arrhenius(A_4, E_4) A + @;
+@A + 3 [@A, @B] +   @ -> k_arrhenius(A_3, E_3) A + 2 @;
+@A + 2 [@A, @B] + 2 @ -> k_arrhenius(A_2, E_2) A + 3 @;
+@A +   [@A, @B] + 3 @ -> k_arrhenius(A_1, E_1) A + 4 @;
+@A +              4 @ -> k_arrhenius(A_0, E_0) A + 5 @;
+
+# reaction to make sure step is short enough
+X -> k_constant(1.0e-5) X;

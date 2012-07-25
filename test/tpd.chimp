@@ -1,0 +1,6 @@
+mechanism "tpd.mech"
+parameter "tpd.par"
+task "tpd.task"
+mechanism "tpd.explicit.mech"
+parameter "tpd.par"
+task "tpd.explicit.task"

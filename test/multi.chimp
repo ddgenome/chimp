@@ -1,0 +1,4 @@
+# simple catalytic mechanism with a multisite species test
+mechanism "multi.mech"
+parameter "multi.par"
+task "multi.task"

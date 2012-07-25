@@ -1,0 +1,6 @@
+# unimolecular surface reaction
+mechanism "uni.mech"
+## parameter input
+parameter "uni.par"
+## simple task
+task "uni.task"

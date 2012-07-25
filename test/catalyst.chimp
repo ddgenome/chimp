@@ -1,0 +1,6 @@
+## catalytic mechanism, but don't use the kmc lattice
+mechanism "catalyst.mech"
+## parameter input
+parameter "catalyst.par"
+## catalyst task
+task "catalyst.task"

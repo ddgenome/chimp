@@ -1,0 +1,4 @@
+# parameter input file for simple mechanism
+A_Aads	1.0e1	# molec/Pa/site/s
+A_sr	2.0e9	# molec/site/s
+E_sr	5.7e4	# J/mol

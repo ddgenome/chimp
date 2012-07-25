@@ -1,0 +1,5 @@
+# bimolecular surface reaction mechanism
+# adsorption / desorption
+A + @ -> k(A_Aads) @A;
+# surface reaction
+2 @A -> k_arrhenius(A_sr, E_sr) B + 2@;

@@ -1,0 +1,246 @@
+#! /usr/bin/env @PERL@
+# -*-perl-*-
+# This program runs CHIMP tests and checks for failure.
+# Copyright (C) 2004 David J. Dooling <banjo@users.sourceforge.net>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#  
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#  
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+use warnings;
+use strict;
+use Getopt::Long;
+use File::Copy;
+my $pkg = 'rtest';
+
+# version number
+# GNITS compliant --version output
+sub version ()
+{
+    my $version = '0.0';
+    print "$pkg $version\n";
+}
+
+# GNITS compliant --help output
+sub usage ($)
+{
+    my ($prog_name) = @_;
+    # here-document syntax for usage information
+    print <<"EOF";
+Usage: $prog_name [OPTIONS]... [FILE]...
+If an argument to a long option is mandatory, it is also mandatory for
+the corresponding short option; the same is true for optional arguments.
+
+Synopsis: run_test runs CHIMP tests and checks for failure.
+
+Options:
+  -c, --compare        do not run tests, only compare output to saved
+  -e, --executable=X   change the name of the executable
+  -h, --help           display this help and exit
+  -q, --quiet          only output on error
+  -s, --silent         same as --quiet
+  -v, --version        output version information and exit
+  --                   terminate option processing
+
+If no FILE is given, all working tests are run.  Otherwise, run only
+the tests in [FILE]....
+
+Report bugs to <banjo\@users.sourceforge.net>.
+EOF
+}
+
+# process command line options
+my $executable = '@top_builddir@/src/chimp';
+my ($notest, $help, $quiet, $version);
+unless (&GetOptions('compare'      => \$notest,
+                    'executable=s' => \$executable,
+                    'help'         => \$help,
+                    'quiet'        => \$quiet,
+                    'silent'       => \$quiet,
+		    'version'      => \$version))
+{
+    die "Try `$0 --help' for more information.\n";
+}
+# version takes precedence over help
+if ($version) {
+    &version();
+    exit(0);
+}
+if ($help) {
+    &usage($pkg);
+    exit(0);
+}
+
+## start actually doing something
+# the current list of working tests
+my @working = qw(bi catalyst complex event gas gas_cstr liquid multi
+		 scale set tpd uni);
+# override the list with arguments
+if (@ARGV) {
+    @working = @ARGV;
+}
+
+# ensure quick and consistent output
+$| = 1;
+# flag if any fail
+my ($test_status, $total_tests, $diff_status, $total_diff) = (0, 0, 0, 0);
+# loop through and run the tests
+foreach my $test (@working) {
+    unless ($notest) {
+	print "running $test..." unless $quiet;
+	# see if master input file exists
+	unless (-e "$test.chimp") {
+	    print "input file does not exists\n";
+	    ++$test_status;
+	    next;
+	}
+	# see if an output file exists
+	if (-e "$test.out") {
+	    if (-e "$test.out.save") {
+		# make sure they are the same
+		my @exec = ('cmp', '--quiet', "$test.out", "$test.out.save");
+		my $result = system(@exec) / 256;
+		if ($result > 1) {	# failure
+		    die "$pkg: could not successfully compare out file and "
+			. "saved file for test $test, quitting";
+		}
+		elsif ($result > 0) { # files differ
+		    # see what we should do
+		    print STDERR "\n$pkg: files $test.out and $test.out.save "
+			. "differ:\n"
+			. "    [r]emove $test.out\n"
+			. "    [m]ove $test.out to $test.out.save\n"
+			. "    [s]kip test $test\n"
+			. "    [q]uit\n"
+			. "  select r, m, s, or q: ";
+		    my $answer = <STDIN>;
+		    chomp $answer;
+		    if ($answer eq 'r') {
+			;		# this gets removed below
+		    }
+		    elsif ($answer eq 'm') {
+			unless (unlink "$test.out.save") {
+			    die "$pkg: could not remove $test.out.save: $!, "
+				. "quitting";
+			}
+			unless(copy("$test.out", "$test.out.save")) {
+			    die "$pkg: could not copy $test.out to "
+				. "$test.out.save: $!, quitting";
+			}
+		    }
+		    elsif ($answer eq 's') {
+			next;	# foreach ($test)
+		    }
+		    else {
+			exit(-1);
+		    }
+		}
+	    }
+	    else {
+		# try to copy it (if it fails, no big deal)
+		copy("$test.out", "$test.out.save");
+	    }
+	    # remove the output file
+	    unless (unlink("$test.out")) {
+		warn "$pkg: could not unlink $test.out: $!\n"
+		    . "  [s]kip test or [q]uit? [s/q] ";
+		my $answer = <STDIN>;
+		if ($answer eq 's') {
+		    next;
+		}
+		else {
+		    exit(-1);
+		}
+	    }
+	}
+	# check for stdout file
+	if (-e "$test.stdout") {
+	    # not a big deal if these fail
+	    unlink "$test.stdout.save";
+	    rename "$test.stdout", "$test.stdout.save";
+	}
+	# fork off and run the test
+      FORK: {
+	  if (my $pid = fork) {	# parent
+	      # wait for the process to finish
+	      my $result = waitpid($pid, 0);
+	      my $status = $? >> 8;
+	      # check the result
+	      if ($result == -1) {
+		  die "$pkg: tried to fork, but waitpid found no children: $!, "
+		      . "quitting";
+	      }
+	      ++$total_tests;
+	      # check the return status of the child
+	      if ($status) {
+		  # failure
+		  print "failed\n" unless $quiet;
+		  # increment overall exit status
+		  ++$test_status;
+		  # do not compare output
+		  next;
+	      }
+	      else {
+		  print "succeeded\n" unless $quiet;
+	      }
+	  }
+	  elsif (defined($pid)) {	# child (pid is zero)
+	      # get command line together 
+	      my $test_command = "$executable $test >& $test.stdout";
+	      # replace my self with the test
+	      exec($test_command)
+		  or die "$pkg: could not exec $test_command: $!, quitting";
+	  }
+	  elsif ($! =~ /no more process/i) { # failure
+	      # EAGAIN, supposedly recoverable fork error
+	      warn "$pkg: fork failed, will retry...";
+	      sleep 5;
+	      redo FORK;
+	  }
+	  else {			# big failure
+	      # error
+	      die "$pkg: can not fork: $!, quitting";
+	  }
+      }
+    }
+    # compare the output file with the saved file (if there is one)
+    if (-e "$test.out" && -e "$test.out.save") {
+        ++$total_diff;
+	print "comparing $test.out and $test.out.save..."
+	    unless $quiet;
+	# make sure they are the same
+	my @exec = ('cmp', '--quiet', "$test.out", "$test.out.save");
+	my $result = system(@exec) / 256;
+	if ($result > 1) {	# failure
+	    die "$pkg: could not successfully compare out file and saved "
+		. "file for test $test, quitting";
+	}
+	elsif ($result) {	# files differ
+	    print "different\n" unless $quiet;
+            ++$diff_status;
+	}
+	else {			# same
+	    print "same\n" unless $quiet;
+	    # remove the saved file (do not care if it fails)
+	    unlink "$test.out.save";
+	}
+    }
+}
+if ($total_tests && !$quiet) {
+    # summary
+    print "$pkg: $test_status tests failed out of $total_tests\n";
+    print "$pkg: $diff_status tests had different results out of $total_diff\n"
+        if $total_diff;
+}
+# exit reporting how many failed
+exit($test_status);

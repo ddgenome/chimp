@@ -1,0 +1,6 @@
+## liquid-phase only mechanism
+mechanism "liquid.mech"
+## parameter input
+parameter "liquid.par"
+## liquid-phase task
+task "liquid.task"

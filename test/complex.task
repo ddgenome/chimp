@@ -1,0 +1,26 @@
+# -*- text -*-
+# test task input
+begin model complex
+  output "complex.out"
+  begin integrator kmc
+    scale 1.0e16
+    begin state
+      begin quantity
+	p[A] = 1.0e5		# Pa
+	p[B] = 1.0e5		# Pa
+      end quantity
+      begin output
+	(1.0e-1 5.0e-1 1.0e-1)
+      end output
+      begin reactor batch
+	temperature 5.0e2	# K
+	pressure 2.0e5		# Pa
+	volume 1.0e-3		# m^3
+	sites 1.0e20
+	rate_numerator molecules
+	rate_denominator sites
+	fluid_quantity pressure
+      end reactor
+    end state
+  end integrator
+end model

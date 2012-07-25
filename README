@@ -1,0 +1,44 @@
+-*- text -*-
+Welcome to the CHIMP HIerarchical Modeling Program.
+
+This directory tree holds version 0.1 of CHIMP.
+
+You may encounter bugs in the present release of CHIMP.  If you do,
+please report them, as we cannot fix it if we don't know it is broken.
+See below (-BUGS-) for more information on how to report bugs.
+
+The file INSTALL contains information on how to install CHIMP on your
+machine.
+
+CHIMP is free software.  The file COPYING contains the GNU General
+Public License and the terms for copying, redistributing, and modifying
+this program, source code, and documentation.
+
+-BUGS-
+Before reporting any bugs please do the following:
+
+1) Read the files included with this distribution to see if they
+   contain any information concerning the difficulty you are facing.
+   These files may contain a workaround to your problem or at least
+   indicate that the problem is known (and perhaps being corrected).
+
+2) Make sure it is a bug.  Try to recreate the erroneous behavior. If
+   possible, isolate the cause of the problem and create a minimal
+   test case which causes the problem.
+
+3) Try to get as much information about what caused the problem as
+   possible.  For example, if the program crashes, record any error
+   messages which were printed to your terminal.
+
+Once you have determined that there is indeed a bug in the software,
+please report the bug in the bug tracking system on the web site:
+
+  http://sourceforge.net/tracker/?func=add&group_id=5085&atid=105085
+
+Please include your name, email address, affiliation, your machine's
+architecture and operating system, a detailed description of the bug and
+what caused it, (if relevant) a set of inputs which cause the bug, (if
+relevant) the erroneous output, and any fix or workaround you may have
+found.
+
+Thank you.

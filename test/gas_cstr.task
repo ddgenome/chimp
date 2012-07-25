@@ -1,0 +1,25 @@
+# -*- text -*-
+# cstr task input
+begin model gas_cstr
+  output "gas_cstr.out"
+  begin integrator kmc
+    scale 1.0e14
+    begin state
+      begin quantity
+	p[A] = 1.0e5		# Pa
+	p[B] = 1.0e5		# Pa
+      end quantity
+      begin output
+	(1.0e0 1.0e1)
+      end output
+      begin reactor cstr
+	temperature 3.0e2	# K
+	volume 1.0e-5		# m^3
+	flow 1.0e-5		# moles/sec
+	rate_numerator moles
+	rate_denominator volume
+	fluid_quantity pressure
+      end reactor
+    end state
+  end integrator
+end model

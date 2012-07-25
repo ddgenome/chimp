@@ -1,0 +1,30 @@
+# -*- text -*-
+# TPD with adsorbate-adsorbate interactions task input
+begin model tpd_explicit
+  output "tpd.out"
+  begin integrator kmc
+    size 50
+    site_type neighbor
+    rate_constant event
+    reaction_counter "tpd.explicit.rxncnt"
+    begin state
+      begin quantity
+	@[@A] = 6.0e-1
+	@[@B] = 4.0e-1
+	p[X] = 1.0e5
+      end quantity
+      begin output
+	(1.0e1 1.0e2 1.0e1)
+      end output
+      begin reactor batch
+	temperature 1.5e2	# K
+	heating_rate 1.0e0	# K/s
+	volume 1.0e-5		# m^3
+	sites 1.0e19
+	rate_numerator molecules
+	rate_denominator sites
+	fluid_quantity pressure
+      end reactor
+    end state
+  end integrator
+end model

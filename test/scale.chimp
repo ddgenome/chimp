@@ -1,0 +1,6 @@
+## scaling test
+mechanism "scale.mech"
+## parameter input
+parameter "scale.par"
+## scale test task
+task "scale.task"

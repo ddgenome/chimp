@@ -1,0 +1,27 @@
+# -*- text -*-
+# multi input
+begin model multi
+  output "multi.out"
+  begin integrator kmc
+    size 30
+    surface_file "multi.surface"
+    begin state
+      begin quantity
+	p[A] = 1.0e5		# Pa
+	@[@@@A] = 1.5e-1
+      end quantity
+      begin output
+	1.0e-3 1.0e-2 2.0e-2
+      end output
+      begin reactor batch
+	temperature 4.0e2	# K
+	pressure 1.0e5		# Pa
+	volume 3.0e-5		# m^3
+	sites 2.0e19
+	rate_numerator molecules
+	rate_denominator sites
+	fluid_quantity pressure
+      end reactor
+    end state
+  end integrator
+end model

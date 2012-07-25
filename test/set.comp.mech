@@ -1,0 +1,4 @@
+# a simple gas-phase mechanism using the species set feature
+D -> k_arrhenius(A2f, E2f) <- k_arrhenius(A2r, E2r) E;
+A + B -> k_arrhenius(A1f, E1f) <- k_arrhenius(A1r, E1r) D + B;
+A + C -> k_arrhenius(A1f, E1f) <- k_arrhenius(A1r, E1r) D + C;

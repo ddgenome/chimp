@@ -1,0 +1,9 @@
+# parameter input for scaling test
+A1f	2.0e1	# mol/m^3/s
+E1f	3.2e4	# J/mol
+A1r	1.0e1	# mol/m^3/s
+E1r	3.0e4	# J/mol
+A2f	5.0e0	# mol/m^3/s
+E2f	2.8e4	# J/mol
+A2r	4.9e0	# mol/m^3/s
+E2r	3.0e4	# J/mol

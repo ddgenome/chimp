@@ -1,0 +1,7 @@
+# complex (somewhat) catalytic mechansim
+A + 2 @ <- k(Ades) -> k(Aads) @@A;
+B + @ <- k(Bdes) -> k(Bads) @B;
+@@A + @B + @ <- k(srr) -> k(srf) @C + @@@D;
+@@@D <- k(Dcom) -> k(Ddis) 3 @E;
+@C <- k(Cads) -> k(Cdes) C + @;
+@E <- k(Eads) -> k(Edes) E + @;

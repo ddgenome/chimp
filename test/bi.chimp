@@ -1,0 +1,6 @@
+# bimolecular surface reaction
+mechanism "bi.mech"
+## parameter input
+parameter "bi.par"
+## simple task
+task "bi.task"

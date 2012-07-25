@@ -1,0 +1,7 @@
+# catalyst without lattice
+# adsorption / desorption
+A + 2 @ -> k(A_Aads) <- k_arrhenius(A_Ades, E_Ades) @@A;
+# surface reaction
+@@A -> k_lfer(A_srf, E0_sr, a_srf, DH_srf)
+  <- k_lfer(A_srr, E0_sr, 1.0e0 - a_srf, -DH_srf) 2 @B;
+@B -> k_arrhenius(A_Bdes, E_Bdes) <- k(A_Bads) B + @;

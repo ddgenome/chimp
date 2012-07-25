@@ -1,0 +1,26 @@
+The model subdirectory contains the files needed to solve kinetic
+models.
+
+Files:
+ensemble.cc      Methods to create and analyze reaction ensembles.
+ensemble.h       This class maintains the ensembles required for reactions.
+environment.cc   Methods which determine connectivity of  surface species.
+environment.h    Information about which species surround a surface species.
+integrate.cc     Methods for setting up and executing model solutions.
+integrate.h      Model solution information and methods.
+kmc.cc           Methods for setting up and executing model solutions.
+kmc.h            Kinetic Monte Carlo integration class.
+lattice.cc       Methods for the creation and manipulating the kmc lattice.
+lattice.h        Class for the creation and maintenance of the kmc lattice.
+model_task.cc    Methods to translate input into a working model solution.
+model_task.h     Method to contain information for model solution.
+point.cc         Methods to manipulate a single lattice point on a kmc surface.
+point.h          Description of a single lattice point in the kmc surface.
+reactor.cc       Reactor configuration and solution methods.
+reactor.h        Reactor configuration and solution information.
+rng.cc           Functions to generate random numbers.
+rng.h            Definition of random number generator class.
+state.cc         Methods for setting intial state of reactor and output.
+state.h          Classes defining the intial state of reactor and output.
+
+$Id: README,v 1.1.1.1 2004/11/25 20:24:08 banjo Exp $

@@ -1,0 +1,6 @@
+# parameters for multi task
+A_Aads	1.0e-1
+A_Ades	1.0e12
+E_Ades	6.2e4
+A_srf	1.0e12
+E_srf	6.9e4

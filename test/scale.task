@@ -1,0 +1,97 @@
+# -*- text -*-
+# scaling test task input
+begin model scale_19
+  output "scale.out"
+  begin integrator kmc
+    scale 1.0e19
+    begin state
+      begin quantity
+	c[A] = 1.0e0		# mol/m^3
+	c[B] = 1.0e0		# mol/m^3
+      end quantity
+      begin output
+	(1.0e1 1.0e2 1.0e1)
+      end output
+      begin reactor batch
+	temperature 4.2e2	# K
+	pressure 1.0e5		# Pa
+	volume 1.0e1		# m^3
+	rate_numerator moles
+	rate_denominator volume
+	fluid_quantity concentration
+      end reactor
+    end state
+  end integrator
+end model
+
+begin model scale_18
+  output "scale.out"
+  begin integrator kmc
+    scale 1.0e18
+    begin state
+      begin quantity
+	c[A] = 1.0e0		# mol/m^3
+	c[B] = 1.0e0		# mol/m^3
+      end quantity
+      begin output
+	(1.0e1 1.0e2 1.0e1)
+      end output
+      begin reactor batch
+	temperature 4.2e2	# K
+	pressure 1.0e5		# Pa
+	volume 1.0e1		# m^3
+	rate_numerator moles
+	rate_denominator volume
+	fluid_quantity concentration
+      end reactor
+    end state
+  end integrator
+end model
+
+#  begin model scale_17
+#    output "scale.out"
+#    begin integrator kmc
+#      scale 1.0e17
+#      begin state
+#        begin quantity
+#  	c[A] = 1.0e0		# mol/m^3
+#  	c[B] = 1.0e0		# mol/m^3
+#        end quantity
+#        begin output
+#  	(1.0e1 1.0e2 1.0e1)
+#        end output
+#        begin reactor batch
+#  	temperature 4.2e2	# K
+#  	pressure 1.0e5		# Pa
+#  	volume 1.0e1		# m^3
+#  	rate_numerator moles
+#  	rate_denominator volume
+#  	fluid_quantity concentration
+#        end reactor
+#      end state
+#    end integrator
+#  end model
+
+begin model scale_18v1
+  output "scale.out"
+  begin integrator kmc
+    scale 1.0e18
+    begin state
+      begin quantity
+	c[A] = 1.0e0		# mol/m^3
+	c[B] = 1.0e0		# mol/m^3
+      end quantity
+      begin output
+	(1.0e1 1.0e2 1.0e1)
+      end output
+      begin reactor batch
+	temperature 4.2e2	# K
+	pressure 1.0e5		# Pa
+	volume 1.0e0		# m^3
+	rate_numerator moles
+	rate_denominator volume
+	fluid_quantity concentration
+      end reactor
+    end state
+  end integrator
+end model

@@ -1,0 +1,6 @@
+# test the event based rate constant conversion
+mechanism "event.mech"
+parameter "event.coverage.par"
+task "event.coverage.task"
+parameter "event.event.par"
+task "event.event.task"

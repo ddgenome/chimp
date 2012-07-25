@@ -1,0 +1,26 @@
+# -*- text -*-
+# bi input
+begin model bi
+  output "bi.out"
+  begin integrator kmc
+    size 30
+    begin state
+      begin quantity
+	p[A] = 1.0e5		# Pa
+	@[@A] = 1.0e0
+      end quantity
+      begin output
+	1.0e-5 1.0e-1 1.0e0 2.0e0
+      end output
+      begin reactor batch
+	temperature 3.5e2	# K
+	pressure 1.0e5		# Pa
+	volume 5.0e-4		# m^3
+	sites 9.0e18
+	rate_numerator molecules
+	rate_denominator sites
+	fluid_quantity pressure
+      end reactor
+    end state
+  end integrator
+end model

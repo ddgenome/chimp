@@ -1,0 +1,7 @@
+# a unimolecular surface reaction mechanism
+# adsorption / desorption of A
+A + @ -> k_constant(A_Aads) <- k_arrhenius(A_Ades, E_Ades) @A;
+# surface reaction
+@A -> k_arrhenius(A_srf, E_srf) <- k_arrhenius(A_srr, E_srr) @B;
+# adsorption / desorption of B
+@B <- k_constant(A_Bads) -> k_arrhenius(A_Bdes, E_Bdes) B + @;

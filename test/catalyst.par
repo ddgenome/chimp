@@ -1,0 +1,12 @@
+# catalyst parameter input file
+A_Aads	7.0e2
+A_Ades	1.0e11
+E_Ades	7.0e4
+A_srf	1.0e12
+E0_sr	6.1e4
+a_srf	5.0e-1
+DH_srf	-1.5e4
+A_srr	1.0e12
+A_Bdes	1.0e11
+E_Bdes	6.5e4
+A_Bads	6.0e-1

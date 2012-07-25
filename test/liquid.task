@@ -1,0 +1,25 @@
+# -*- text -*-
+# liquid-phase task input
+begin model liquid
+  output "liquid.out"
+  begin integrator kmc
+    scale 1.0e20
+    begin state
+      begin quantity
+	c[A] = 1.0e3		# mol/m^3
+	c[B] = 1.0e3		# mol/m^3
+      end quantity
+      begin output
+	(1.0e2 5.0e2 1.0e2)
+      end output
+      begin reactor batch
+	temperature 3.0e2	# K
+	pressure 1.0e0		# Pa
+	volume 1.0e0		# m^3
+	rate_numerator moles
+	rate_denominator volume
+	fluid_quantity concentration
+      end reactor
+    end state
+  end integrator
+end model

@@ -1,0 +1,6 @@
+## gas-phase only mechanism
+mechanism "gas.mech"
+## parameter input
+parameter "gas.par"
+## gas-phase task
+task "gas_cstr.task"

@@ -1,0 +1,54 @@
+This directory and its subdirectories contains the actual source for
+CHIMP.
+
+There is one subdirectory:
+
+`model' contains the model solving code.
+
+Files:
+chimp.cc        CHIMP - CHIMP HIerarchical Modeling Program.
+chimp.h         CHIMP - CHIMP HIerarchical Modeling Program.
+compare.cc      String comparison methods.
+compare.h       String comparison methods.
+constant.h      Class containing useful constants.
+counter.cc      Methods for counting instances of things.
+counter.h       File for counting instances of objecs, names, etc.
+except.h        Exceptions thrown by CHIMP.
+file.cc         Methods to safely manipulate files.
+file.h          Classes to safely manipulate files.
+handler.cc      Better ways to deal with memory failures.
+handler.h       Memory management functions.
+k.cc            Methods for creating and manipulating rate constants.
+k.h             Declaration of classes for reaction rate constants.
+manager.cc      Methods for the execution of tasks in proper order.
+manager.h       lass which controls what tasks are executed.
+mech_lex.cc     Mechanism lexer.
+mech_lex.h      Functions and variables used by lexer and needed by outside.
+mech_lex.ll     Definition of tokens for the mechanism lexer.
+mech_parse.cc   Mechanism parser.
+mech_parse.yy   Definition of parser grammar for mechanisms.
+mechanism.cc    Mechanism set-up and manipulating methods.
+mechanism.h     Mechanism parsing and managing classes.
+model_mech.cc   Mechanism methods needed for model solution.
+model_mech.h    Mechanism information needed for model solution.
+par_task.cc     Methods for setting parameter values.
+par_task.h      Task which sets parameter values for subsequent tasks.
+parameter.cc    Methods for creating and manipulating parameters.
+parameter.h     Class declarations for manipulation of parameters.
+quantity.cc     Methods for manipulation of species quantites.
+quantity.h      lasses to convert pressures, concentrations, and flow rates.
+reaction.cc     Functions for the manipulation of chemical reactions.
+reaction.h      lass declarations for chemical reactions.
+species.cc      Methods for creating and manipulating chemical species.
+species.h       Class declarations for chemical species.
+t_string.h      String creation functions.
+task.cc         Task management methods.
+task.h          Program task information base class.
+token.cc        Tokenizer interface methods.
+token.h         Functions and variables used by lexer and needed by outside.
+token_lex.cc    Input tokenizing lexer.
+token_lex.ll    Definition of tokenizing lexer.
+unique.cc       Methods to create unique words for instances of classes.
+unique.h        Class to create unique words for instances of classes.
+
+$Id: README,v 1.1.1.1 2004/11/25 20:24:05 banjo Exp $

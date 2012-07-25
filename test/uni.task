@@ -1,0 +1,25 @@
+# -*- text -*-
+# unimolecular surface reaction task input
+begin model uni
+  output "uni.out"
+  begin integrator kmc
+    size 30
+    scale 1.0e15
+    surface_file "uni.surface"
+    begin state
+      begin quantity
+	p[A] = 1.0e5		# Pa
+      end quantity
+      begin output
+	1.0e-5 1.0e-1 (1.0e0 1.0e1)
+      end output
+      begin reactor batch
+	temperature 4.2e2	# K
+	volume 1.0e-5		# m^3
+	rate_numerator molecules
+	rate_denominator sites
+	fluid_quantity pressure
+      end reactor
+    end state
+  end integrator
+end model

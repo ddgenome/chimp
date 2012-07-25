@@ -1,0 +1,3 @@
+# simple catalytic mechanism with multisite species
+A + 3 @ <- k_Arrhenius(A_Ades, E_Ades) -> k(A_Aads) @@@A;
+@@@A -> k_Arrhenius(A_srf, E_srf) B + 3 @;

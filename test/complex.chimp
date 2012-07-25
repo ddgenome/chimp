@@ -1,0 +1,6 @@
+## complex catalytic mechanism, but don't use the kmc lattice
+mechanism "complex.mech"
+## parameter input
+parameter "complex.par"
+## complex task
+task "complex.task"

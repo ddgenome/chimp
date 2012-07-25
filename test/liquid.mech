@@ -1,0 +1,4 @@
+# a liquid-phase mechanism
+A + B -> k_arrhenius(A1f, E1f) <- k_arrhenius(A1r, E1r) C;
+C -> k_arrhenius(A2f, E2f) <- k_arrhenius(A2r, E2r) D;
+C + D -> k_arrhenius(A3f, E3f) <- k_arrhenius(A3r, E3r) E;

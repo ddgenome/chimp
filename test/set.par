@@ -1,0 +1,9 @@
+# parameter input file for gas-phase mechanism
+A1f	2.0e-1	# mol/Pa^2/m^3/s
+E1f	5.2e4	# J/mol
+A1r	1.0e-2	# mol/Pa^2/m^3/s
+E1r	5.0e4	# J/mol
+A2f	5.0e2	# mol/Pa/m^3/s
+E2f	4.8e4	# J/mol
+A2r	4.9e2	# mol/Pa/m^3/s
+E2r	6.0e4	# J/mol

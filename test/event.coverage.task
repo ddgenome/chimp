@@ -1,0 +1,24 @@
+# -*- text -*-
+# tasks to test event based rate constant conversion
+begin model event_coverage
+  output "event.out"
+  begin integrator kmc
+    size 40
+    begin state
+      begin quantity
+	p[A] = 1.0e5		# Pa
+      end quantity
+      begin output
+	1.0e-5 (1.0e-1 1.0e0 1.0e-1)
+      end output
+      begin reactor batch
+	temperature 4.2e2	# K
+	volume 1.0e-5		# m^3
+	sites 1.0e19
+	rate_numerator molecules
+	rate_denominator sites
+	fluid_quantity pressure
+      end reactor
+    end state
+  end integrator
+end model

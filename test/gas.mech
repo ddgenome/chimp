@@ -1,0 +1,3 @@
+# a simple gas-phase mechanism
+A + B -> k_arrhenius(A1f, E1f) <- k_arrhenius(A1r, E1r) C;
+C -> k_arrhenius(A2f, E2f) <- k_arrhenius(A2r, E2r) D;
